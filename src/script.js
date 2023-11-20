@@ -1,6 +1,8 @@
 let memory = 0;
 let currentDisplay = "0";
 
+alert("C pra limpar, W pra M+, E pra M-, R pra MR");
+
 function clearMemory() {
     memory = 0;
 }
@@ -53,4 +55,24 @@ function inverteUltimoNumero() {
   updateDisplay();
 }
 
-document.querySelector("#±").addEventListener("click", inverteUltimoNumero);
+document.addEventListener("keydown", function(event) {
+    const key = event.key;
+
+    if (key >= '0' && key <= '9') {
+        insert(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        insert(key);
+    } else if (key === 'w') {
+        addToMemory();
+    } else if (key === 'e') {
+        subtractFromMemory();
+    } else if (key === 'r') {
+        recallMemory();
+    } else if (key === 'c') {
+        clean();
+    } else if (key === 'q') {
+        clearMemory();
+    } else if (key === 'Enter') {
+        calcular();
+    }
+});
